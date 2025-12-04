@@ -1,7 +1,10 @@
 import { Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { addToFavourites, removeFromFavourites } from "../redux/actions"
+import {
+  addToFavouritesAction,
+  removeFromFavouritesAction,
+} from "../redux/actions/favouritesActions"
 
 const Job = ({ data }) => {
   const dispatch = useDispatch()
@@ -10,9 +13,9 @@ const Job = ({ data }) => {
 
   const handleFavouriteClick = () => {
     if (isFavourite) {
-      dispatch(removeFromFavourites(data.company_name))
+      dispatch(removeFromFavouritesAction(data.company_name))
     } else {
-      dispatch(addToFavourites(data.company_name))
+      dispatch(addToFavouritesAction(data.company_name))
     }
   }
 
@@ -35,7 +38,7 @@ const Job = ({ data }) => {
           size="sm"
           onClick={handleFavouriteClick}
         >
-          {isFavourite ? "Remove" : "Add to Favourites"}
+          {isFavourite ? "❌ Remove" : "⭐ Add to Favourites"}
         </Button>
       </Col>
     </Row>
